@@ -12,7 +12,7 @@ import warnings
 
 from rdkit import Chem
 
-from .molsetup import OBMoleculeSetup
+#from .molsetup import OBMoleculeSetup
 from .molsetup import RDKitMoleculeSetup
 from .atomtyper import AtomTyper
 from .bondtyper import BondTyperLegacy
@@ -66,8 +66,8 @@ class MoleculePreparation:
         self.is_ok = None
         self.log = ""
         self._classes_setup = {Chem.rdchem.Mol: RDKitMoleculeSetup}
-        if _has_openbabel:
-            self._classes_setup[ob.OBMol] = OBMoleculeSetup
+        #if _has_openbabel:
+        #    self._classes_setup[ob.OBMol] = OBMoleculeSetup
         if keep_chorded_rings and keep_equivalent_rings==False:
             warnings.warn("keep_equivalent_rings=False ignored because keep_chorded_rings=True", RuntimeWarning)
 

@@ -37,11 +37,11 @@ __all__ = ['MoleculePreparation', 'RDKitMoleculeSetup',
         'AtomTyper', 'PDBQTMolecule', 'PDBQTReceptor', 'analysis',
         'RDKitMolCreate']
 
-if _has_openbabel:
-    from .molsetup import OBMoleculeSetup
-    from .utils import obutils
-    __all__.append("OBMoleculeSetup")
-    __all__.append("obutils")
+#if _has_openbabel:
+#    from .molsetup import OBMoleculeSetup
+#    from .utils import obutils
+#    __all__.append("OBMoleculeSetup")
+#    __all__.append("obutils")
 
 if _has_prody:
     from .covalentbuilder import CovalentBuilder

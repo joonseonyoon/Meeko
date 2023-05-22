@@ -6,12 +6,12 @@
 
 __version__ = "0.4.0"
 
-try:
-    import openbabel
-except ImportError:
-    _has_openbabel = False
-else:
-    _has_openbabel = True
+#try:
+#    import openbabel
+#except ImportError:
+#    _has_openbabel = False
+#else:
+#    _has_openbabel = True
 
 try:
     import prody

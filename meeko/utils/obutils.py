@@ -8,7 +8,7 @@
 # from collections import namedtuple
 
 import numpy as np
-from openbabel import openbabel as ob
+#from openbabel import openbabel as ob
 
 from . import geomutils
 from . import utils
@@ -39,8 +39,8 @@ def getCoordsFromAtomIndices(obmol, atomIdxList):
         coord.append(getAtomCoords(a))
     return np.array(coord)
 
-def getAtoms(obmol):
-    return ob.OBMolAtomIter(obmol)
+#def getAtoms(obmol):
+#    return ob.OBMolAtomIter(obmol)
 
 def getAtomRes(atom):
     """ retrieve residue info about the atom """
@@ -58,48 +58,48 @@ def atomsCentroid(obmol, atomIndices):
     return geomutils.averageCoords(coord)
 
 
-def atomNeighbors(atom):
+#def atomNeighbors(atom):
     """ return atom neighbors"""
-    return [x for x in ob.OBAtomAtomIter(a)]
+#    return [x for x in ob.OBAtomAtomIter(a)]
 
 
-def load_molecule_from_file(fname, molecule_format=None):
+#def load_molecule_from_file(fname, molecule_format=None):
     """ load molecule with openbabel"""
-    if molecule_format is None:
-        n, ftype = utils.getNameExt(fname)
-        ftype = ftype.lower()
+#    if molecule_format is None:
+#        n, ftype = utils.getNameExt(fname)
+#        ftype = ftype.lower()
 
-    mol = ob.OBMol()
-    conv = ob.OBConversion()
-    conv.SetInFormat(molecule_format)
-    conv.ReadFile(mol, fname)
+#    mol = ob.OBMol()
+#    conv = ob.OBConversion()
+#    conv.SetInFormat(molecule_format)
+#    conv.ReadFile(mol, fname)
 
     return mol
 
 
-def load_molecule_from_string(string, molecule_format):
+#def load_molecule_from_string(string, molecule_format):
     """ load molecule with openbabel"""
-    mol = ob.OBMol()
-    conv = ob.OBConversion()
-    conv.SetInFormat(molecule_format)
-    conv.ReadString(mol, string)
+#    mol = ob.OBMol()
+#    conv = ob.OBConversion()
+#    conv.SetInFormat(molecule_format)
+#    conv.ReadString(mol, string)
 
-    return mol
+#    return mol
 
 
-def writeMolecule(mol, fname=None, ftype=None):
+#def writeMolecule(mol, fname=None, ftype=None):
     """ save a molecule with openbabel"""
-    if ftype is None:
-        n, ftype = utils.getNameExt(fname)
-        ftype = ftype.lower()
+#    if ftype is None:
+#        n, ftype = utils.getNameExt(fname)
+#        ftype = ftype.lower()
 
-    conv = ob.OBConversion()
-    conv.SetOutFormat(ftype)
+#    conv = ob.OBConversion()
+#    conv.SetOutFormat(ftype)
 
-    if not fname is None:
-        conv.WriteFile(mol, fname)
-    else:
-        return conv.WriteString(mol)
+#    if not fname is None:
+#        conv.WriteFile(mol, fname)
+#    else:
+#        return conv.WriteString(mol)
 
 
 def getPdbInfo(atom):
@@ -133,29 +133,29 @@ def getPdbInfoNoNull(atom):
     return pdbutils.PDBAtomInfo(name=name, resName=resName, resNum=resNum, chain=chain)
 
 
-class OBMolSupplier:
-    def __init__(self, fname, _format):
+#class OBMolSupplier:
+#    def __init__(self, fname, _format):
         """  """
-        self.fname = fname
-        self.conv = ob.OBConversion()
-        status = self.conv.SetInFormat(_format)
-        if not status:
-            raise RuntimeError('could not set OBConversion input format: %s' % _format)
-        self.got_mol_in_cache = False
-        self.cached_mol = None
+#        self.fname = fname
+#        self.conv = ob.OBConversion()
+#        status = self.conv.SetInFormat(_format)
+#        if not status:
+#            raise RuntimeError('could not set OBConversion input format: %s' % _format)
+#        self.got_mol_in_cache = False
+#        self.cached_mol = None
 
-    def __iter__(self):
-        self.cached_mol = ob.OBMol()
-        self.got_mol_in_cache = self.conv.ReadFile(self.cached_mol, self.fname)
-        return self
+#    def __iter__(self):
+#        self.cached_mol = ob.OBMol()
+#        self.got_mol_in_cache = self.conv.ReadFile(self.cached_mol, self.fname)
+#        return self
 
-    def __next__(self):
-        if self.got_mol_in_cache:
-            mol = self.cached_mol
-            self.cached_mol = ob.OBMol()
-            self.got_mol_in_cache = self.conv.Read(self.cached_mol)
-            return mol
-        else:
-            raise StopIteration
+#    def __next__(self):
+#        if self.got_mol_in_cache:
+#            mol = self.cached_mol
+#            self.cached_mol = ob.OBMol()
+#            self.got_mol_in_cache = self.conv.Read(self.cached_mol)
+#            return mol
+#        else:
+#            raise StopIteration
 
 

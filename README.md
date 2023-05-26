@@ -1,4 +1,5 @@
 # Meeko: preparation of small molecules for AutoDock
+====>> openbabel disabled
 
 [![API stability](https://img.shields.io/badge/stable%20API-no-orange)](https://shields.io/)
 [![PyPI version fury.io](https://img.shields.io/badge/version-0.4.0-green.svg)](https://pypi.python.org/pypi/ansicolortags/)
